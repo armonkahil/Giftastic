@@ -62,6 +62,7 @@ function animalGIPHY() {
   })
 //then run this function
   .then(function(response) {
+    console.log(response);
 //variable to store the returned object
       var results = response.data;
       //runs through the array of data
@@ -85,7 +86,7 @@ function animalGIPHY() {
         );
         //adding the image state
         animalImage.attr("data-state", "still");
-        animalImage.addClass("gif");
+        animalImage.addClass("gif imf-responsive");
 
         animalDiv.append(p);
         animalDiv.append(animalImage);
@@ -118,10 +119,16 @@ $("#add-animal").on("click", function(event) {
   var newAnimal = $("#animal-input")
     .val()
     .trim();
+    console.log(newAnimal);
 //add new animal to animal array
-  animals.push(newAnimal);
+if (newAnimal === undefined || newAnimal.length == 0){
+  return
+} else {
+   animals.push(newAnimal);
 //build buttons
   buttonBuild();
+}
+ 
 });
 //add an event listener to the animal buttons
 $(document).on("click", ".animal-btn", animalGIPHY);

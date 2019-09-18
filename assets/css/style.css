@@ -11,3 +11,9 @@ body {
     float: left;
     margin: 10px;
 }
+.form-inline {
+    float: right;
+}
+@media screen and (max-with: 650px) {
+    
+  }
