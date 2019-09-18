@@ -1,0 +1,13 @@
+body {
+    background: #F2F2F2;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+.btn {
+ margin: 5px 10px;
+}
+
+.gifs {
+    float: left;
+    margin: 10px;
+}
