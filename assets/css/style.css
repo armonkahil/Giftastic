@@ -14,6 +14,12 @@ body {
 .form-inline {
     float: right;
 }
+#add-animal {
+    margin-top: 10px;
+}
+
 @media screen and (max-with: 650px) {
-    
+    img{
+        max-width: 100px;
+    }
   }

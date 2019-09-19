@@ -86,7 +86,7 @@ function animalGIPHY() {
         );
         //adding the image state
         animalImage.attr("data-state", "still");
-        animalImage.addClass("gif imf-responsive");
+        animalImage.addClass("gif img-responsive img-thumbnail rounded float-left img-fluid");
 
         animalDiv.append(p);
         animalDiv.append(animalImage);
