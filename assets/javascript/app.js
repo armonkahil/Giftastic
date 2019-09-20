@@ -15,21 +15,24 @@ var animals = [
   "chinchilla",
   "hedgehog",
   "hermit crab",
-  "gerbil",
+  "giraffe",
   "polar bear",
   "chickens",
   "capybara",
   "panther",
   "serval",
   "elephant",
-  "frog"
+  "frog",
+  "dolphin",
+  "cow",
+  "duck"
 ];
 //api key
 var key = "RROr9Y2Ozap7XjYW8vBV8jD8HUhyjPOD";
 
 //animate and pause function
 function animateThis() {
-//local variable storing the state of the image
+  //local variable storing the state of the image
   var state = $(this).attr("data-state");
   // if image state is stll
   if (state === "still") {
@@ -46,33 +49,36 @@ function animateThis() {
 }
 //ajax function
 function animalGIPHY() {
+  $("#animalGifs").empty();
   //variable storing the data-name from the button clicked on
   var animal = $(this).attr("data-name");
-//builing the queryURL
+  //building the queryURL
   var queryURL =
     "https://api.giphy.com/v1/gifs/search?q=" +
     animal +
     "&api_key=" +
     key +
     "&limit=10";
-//ajax method
+  //ajax method
   $.ajax({
     url: queryURL,
     method: "GET"
   })
-//then run this function
-  .then(function(response) {
-    console.log(response);
-//variable to store the returned object
+    //then run this function
+    .then(function(response) {
+      console.log(response);
+      //variable to store the returned object
       var results = response.data;
       //runs through the array of data
       for (var i = 0; i < results.length; i++) {
         //a variable to store a div
         var animalDiv = $("<div>");
         //add a "gif" class
-        animalDiv.addClass("gifs");
+        animalDiv.addClass("gifs card bg-transparent border-light float-left");
         //a variable to store a p element
-        var p = $("<p>").text("Rating: " + results[i].rating);
+        var p = $('<p class = "blockquote-footer">').text(
+          "Rating: " + results[i].rating
+        );
         //a variable to store the img element
         var animalImage = $("<img>");
         //adding the still source
@@ -86,22 +92,26 @@ function animalGIPHY() {
         );
         //adding the image state
         animalImage.attr("data-state", "still");
-        animalImage.addClass("gif img-responsive img-thumbnail rounded float-left img-fluid");
-
-        animalDiv.append(p);
+        animalImage.addClass(
+          "gif img-responsive img-thumbnail rounded float-left img-fluid"
+        );
+        //adding alt to image
+        animalImage.attr("alt", results[i].title);
         animalDiv.append(animalImage);
-          //add the div to animal gif area
+        animalDiv.append(p);
+
+        //add the div to animal gif area
         $("#animalGifs").prepend(animalDiv);
       }
     });
 }
 //function for building buttons
 function buttonBuild() {
-//empty target area just in case
+  //empty target area just in case
   $("#buttons-view").empty();
-//for the length of the array
+  //for the length of the array
   for (var i = 0; i < animals.length; i++) {
-    //local var to store button variable 
+    //local var to store button variable
     var a = $("<button>");
     //add the proper classes
     a.addClass("animal-btn btn btn-info");
@@ -114,21 +124,20 @@ function buttonBuild() {
 }
 //event listener for submit button
 $("#add-animal").on("click", function(event) {
- //prevent the form from automatically submitting
+  //prevent the form from automatically submitting
   event.preventDefault();
   var newAnimal = $("#animal-input")
     .val()
     .trim();
-    console.log(newAnimal);
-//add new animal to animal array
-if (newAnimal === undefined || newAnimal.length == 0){
-  return
-} else {
-   animals.push(newAnimal);
-//build buttons
-  buttonBuild();
-}
- 
+  //add new animal to animal array
+  //prevents empty button
+  if (newAnimal === undefined || newAnimal.length == 0) {
+    return;
+  } else {
+    animals.push(newAnimal);
+    //build buttons
+    buttonBuild();
+  }
 });
 //add an event listener to the animal buttons
 $(document).on("click", ".animal-btn", animalGIPHY);

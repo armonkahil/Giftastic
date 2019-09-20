@@ -1,6 +1,7 @@
+
 body {
     background: #F2F2F2;
-    font-family: Georgia, 'Times New Roman', Times, serif
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .btn {
@@ -8,18 +9,9 @@ body {
 }
 
 .gifs {
-    float: left;
     margin: 10px;
 }
-.form-inline {
-    float: right;
-}
+
 #add-animal {
     margin-top: 10px;
 }
-
-@media screen and (max-with: 650px) {
-    img{
-        max-width: 100px;
-    }
-  }
