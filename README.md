@@ -7,6 +7,6 @@ The purpose of this assignment was to demonstrate my knowledge of Ajax and APIs.
 
 
 
-# Checkout the [Demo]](https://armonkahil.github.io/Giftastic/)
+##### Checkout the [Demo](https://armonkahil.github.io/Giftastic/).
 
 
